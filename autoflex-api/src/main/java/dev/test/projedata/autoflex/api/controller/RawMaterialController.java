@@ -6,6 +6,7 @@ import dev.test.projedata.autoflex.api.service.RawMaterialService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
+import org.springdoc.core.annotations.ParameterObject;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
@@ -43,7 +44,7 @@ public class RawMaterialController {
     @Operation(summary = "FindAll RawMaterial", description = "List all raw materials available for use")
     @GetMapping
     public ResponseEntity<Page<RawMaterialResponse>> findAll(
-           @PageableDefault(page = 0, size = 10, sort = "name") Pageable pageable) {
+           @ParameterObject @PageableDefault(page = 0, size = 10, sort = "name") Pageable pageable) {
         return ResponseEntity.ok().body(rawMaterialService.findAll(pageable));
     }
 
